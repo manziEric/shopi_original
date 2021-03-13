@@ -4,6 +4,8 @@ import { savePaymentMethod } from "../actions/cartActions";
 import CheckoutSteps from "../components/CheckoutSteps";
 
 const PaymentMethodScreen = (props) => {
+  //store paymentMethod in localstorege ??
+  const [paymentMethod, setPaymentMethod] = useState("");
   //get cart from Redux
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
@@ -12,7 +14,6 @@ const PaymentMethodScreen = (props) => {
     props.history.push("/shipping");
   }
 
-  const [paymentMethod, setPaymentMethod] = useState("PayPal");
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
@@ -33,10 +34,9 @@ const PaymentMethodScreen = (props) => {
             <input
               type="radio"
               id="stripe"
-              value="Stripe"
+              value={`Stripe`}
               name="paymentMethod"
               required
-              checked
               onChange={(e) => setPaymentMethod(e.target.value)}
             />
             <label htmlFor="stripe">Stripe</label>
@@ -47,7 +47,7 @@ const PaymentMethodScreen = (props) => {
             <input
               type="radio"
               id="paypal"
-              value="Paypal"
+              value={`paypal`}
               name="paymentMethod"
               required
               onChange={(e) => setPaymentMethod(e.target.value)}

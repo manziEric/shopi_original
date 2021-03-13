@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import productRouter from "./routers/productRouter.js";
 import userRouter from "./routers/userRouter.js";
+import orderRouter from "./routers/orderRouter.js";
 
 //read content of env file for utils
 dotenv.config();
@@ -27,16 +28,19 @@ app.get("/", (req, res) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//users middelware
+//users
 app.use("/api/users", userRouter);
 
-//product middelware
+//product
 app.use("/api/products", productRouter);
 
-//user router error middelware
+//user router error
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
 });
+
+//order
+app.use("/api/orders", orderRouter);
 
 //server
 const PORT = process.env.PORT || 5000;
