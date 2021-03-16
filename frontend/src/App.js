@@ -18,6 +18,7 @@ import ProfileScreen from "./screens/ProfileScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import ShippingAddressScreen from "./screens/ShippingAddressScreen";
 import SigninScreen from "./screens/SigninScreen";
+import UserListScreen from "./screens/UserListScreen";
 
 function App() {
   // useSelector a function that brings us Redux store
@@ -110,6 +111,7 @@ function App() {
           <PrivateRoute path="/profile" component={ProfileScreen} />
           <AdminRoute path="/productlist" component={ProductListScreen} />
           <AdminRoute path="/orderlist" component={OrderListScreen} />
+          <AdminRoute path="/userlist" component={UserListScreen} />
         </main>
         <footer className="row center">All rights reserved</footer>
       </div>
