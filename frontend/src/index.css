@@ -86,6 +86,9 @@ button.primary {
 button.block {
   width: 100%;
 }
+button.small {
+  font-size: 1.2rem;
+}
 input:hover,
 select:hover,
 textarea:hover,
@@ -198,6 +201,10 @@ img.large {
   color: #a02020;
   background-color: #ffe0e0e0;
 }
+.alert-success {
+  color: #20a020;
+  background-color: #eeffe0;
+}
 
 /* Form */
 .form {
@@ -218,7 +225,6 @@ img.large {
   display: inline-block;
   position: relative;
 }
-
 .dropdown-content {
   position: absolute;
   display: none;
@@ -231,13 +237,11 @@ img.large {
   margin-top: 0.4rem;
   border-radius: 0.5rem;
 }
-
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
 /* Checkout steps */
-
 .checkout-steps > div {
   border-top: 0.3rem #c0c0c0 solid;
   color: #c0c0c0;
@@ -245,8 +249,25 @@ img.large {
   padding: 1rem;
   font-weight: bold;
 }
-
 .checkout-steps > div.active {
   border-top-color: #f08000;
   color: #f08000;
+}
+
+/* Tabel  */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table tbody tr:nth-of-type(odd) {
+  background-color: #f4f4f4;
+}
+.table td,
+.table th {
+  text-align: left;
+  border: 0.1rem solid #e4e4e4;
+  padding: 0.5rem;
+}
+.table button {
+  margin: 0 0.2rem;
 }

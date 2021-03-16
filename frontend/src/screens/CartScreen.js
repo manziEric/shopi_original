@@ -13,7 +13,6 @@ const CartScreen = (props) => {
   // useSelector imports the Redux store
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
-  console.log(cartItems);
   // import useDispatch Hook
   const dispatch = useDispatch();
 

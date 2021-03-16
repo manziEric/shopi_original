@@ -22,6 +22,11 @@ app.get("/", (req, res) => {
   res.send("server is ready");
 });
 
+//paypal route. get info from env file
+app.get("/api/config/paypal", (req, res) => {
+  res.send(process.env.PAYPAL_CLIENT_ID || "sb");
+});
+
 ///////// middelware //////////////
 
 // parse json data in req body
