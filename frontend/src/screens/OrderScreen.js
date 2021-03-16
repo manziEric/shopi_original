@@ -3,15 +3,21 @@ import React, { useEffect, useState } from "react";
 import { PayPalButton } from "react-paypal-button-v2";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { detailsOrder, payOrder } from "../actions/orderActions";
+import { deleverOrder, detailsOrder, payOrder } from "../actions/orderActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
-import { ORDER_PAY_RESET } from "../constants/orderConstants";
+import {
+  ORDER_DELIVER_RESET,
+  ORDER_PAY_RESET,
+} from "../constants/orderConstants";
 
 const OrderScreen = (props) => {
   //get data from redux store
   const orderDetails = useSelector((state) => state.orderDetails);
   const { loading, order, error } = orderDetails;
+
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
 
   //state
   const [sdkReady, setSdkReady] = useState(false);
@@ -25,9 +31,17 @@ const OrderScreen = (props) => {
     success: successPay,
   } = orderPay;
 
+  const orderDeliver = useSelector((state) => state.orderDeliver);
+  const {
+    loading: loadingDeliver,
+    error: errorDeliver,
+    success: successDeliver,
+  } = orderDeliver;
+
   const dispatch = useDispatch();
 
   useEffect(() => {
+    //TODO: afteer pay bannkcontact or sofort rerender page for update order pay
     const addPayPalScript = async () => {
       //Client ID
       const { data } = await Axios.get("/api/config/paypal");
@@ -44,8 +58,14 @@ const OrderScreen = (props) => {
       document.body.appendChild(script);
     };
 
-    if (!order || successPay || (order && order._id !== orderId)) {
+    if (
+      !order ||
+      successPay ||
+      successDeliver ||
+      (order && order._id !== orderId)
+    ) {
       dispatch({ type: ORDER_PAY_RESET });
+      dispatch({ type: ORDER_DELIVER_RESET });
       dispatch(detailsOrder(orderId));
     } else {
       if (!order.isPaid) {
@@ -56,10 +76,14 @@ const OrderScreen = (props) => {
         }
       }
     }
-  }, [dispatch, orderId, order, sdkReady]);
+  }, [dispatch, orderId, order, sdkReady, successPay, successDeliver]);
 
   const successPaymentHandler = (paymentResult) => {
     dispatch(payOrder(order, paymentResult));
+  };
+
+  const deliverHandler = () => {
+    dispatch(deleverOrder(order._id));
   };
 
   return loading ? (
@@ -85,7 +109,9 @@ const OrderScreen = (props) => {
                 </p>
                 <h3>Status</h3>
                 {order.isDelivered ? (
-                  <MessageBox>Delivered at {order.deliverdAt}</MessageBox>
+                  <MessageBox variant="success">
+                    Delivered at {order.deliveredAt}
+                  </MessageBox>
                 ) : (
                   <MessageBox variant="danger">Not Delivered</MessageBox>
                 )}
@@ -99,7 +125,9 @@ const OrderScreen = (props) => {
                 </p>
                 <h3>Status</h3>
                 {order.isPaid ? (
-                  <MessageBox>Paid at {order.paidAt}</MessageBox>
+                  <MessageBox variant="success">
+                    Paid at {order.paidAt}
+                  </MessageBox>
                 ) : (
                   <MessageBox variant="danger">Not Paid</MessageBox>
                 )}
@@ -185,6 +213,21 @@ const OrderScreen = (props) => {
                       />
                     </>
                   )}
+                </li>
+              )}
+              {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                <li>
+                  {loadingDeliver && <LoadingBox />}
+                  {errorDeliver && (
+                    <MessageBox variant="danger">{errorDeliver}</MessageBox>
+                  )}
+                  <button
+                    type="button"
+                    className="primary block"
+                    onClick={deliverHandler}
+                  >
+                    Deliver Order
+                  </button>
                 </li>
               )}
             </ul>

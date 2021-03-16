@@ -1,9 +1,11 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import path from "path";
 import productRouter from "./routers/productRouter.js";
 import userRouter from "./routers/userRouter.js";
 import orderRouter from "./routers/orderRouter.js";
+import uploadRouter from "./routers/uploadRouter.js";
 
 //read content of env file for utils
 dotenv.config();
@@ -35,6 +37,13 @@ app.use(express.urlencoded({ extended: true }));
 
 //users
 app.use("/api/users", userRouter);
+
+//upload image
+app.use("/api/uploads", uploadRouter);
+
+//path.resolve return current folder
+const __dirname = path.resolve();
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 //product
 app.use("/api/products", productRouter);
