@@ -5,6 +5,7 @@ import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 
 const OrderHistoryScreen = (props) => {
+  //TODO: Fix: loading data error
   const orderMineList = useSelector((state) => state.orderMineList);
   const { loading, error, orders } = orderMineList;
 
