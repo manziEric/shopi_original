@@ -19,11 +19,6 @@ mongoose.connect(process.env.MONGODB_URL || "mongodb://localhost/amazona", {
   useCreateIndex: true,
 });
 
-//server starting route
-app.get("/", (req, res) => {
-  res.send("server is ready");
-});
-
 //paypal route. get info from env file
 app.get("/api/config/paypal", (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID || "sb");
@@ -44,6 +39,12 @@ app.use("/api/uploads", uploadRouter);
 //path.resolve return current folder
 const __dirname = path.resolve();
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+
+//Serve react files inside build folder in frontend
+app.use(express.static(path.join(__dirname, "/frontend/build")));
+app.use("*", (req, res) =>
+  res.sendFile(path.join(__dirname, "/frontend/build/index.html"))
+);
 
 //product
 app.use("/api/products", productRouter);
