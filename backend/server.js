@@ -42,11 +42,11 @@ app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 //Serve react files inside build folder in frontend
 app.use(express.static(path.join(__dirname, "/frontend/build")));
-app.use("*", (req, res) =>
+app.get("*", (req, res) =>
   res.sendFile(path.join(__dirname, "/frontend/build/index.html"))
 );
 
-//product
+//products route
 app.use("/api/products", productRouter);
 
 //user router error
