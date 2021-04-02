@@ -23,12 +23,9 @@ const HomeScreen = () => {
         <MessageBox variant="danger">{error}</MessageBox>
       ) : products.length >= 1 ? (
         <div className="row center">
-          {
-            (console.log(products),
-            products.map((product) => (
-              <Product key={product._id} product={product} />
-            )))
-          }
+          {products.map((product) => (
+            <Product key={product._id} product={product} />
+          ))}
         </div>
       ) : (
         <MessageBox variant="danger">No products found</MessageBox>
