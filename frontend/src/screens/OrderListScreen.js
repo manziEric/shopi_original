@@ -37,7 +37,7 @@ const OrderListScreen = (props) => {
         <LoadingBox />
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
-      ) : orders.length >= 1 ? (
+      ) : Array.isArray(orders) ? (
         <table className="table">
           <thead>
             <tr>

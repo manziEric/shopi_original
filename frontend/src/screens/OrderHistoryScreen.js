@@ -21,7 +21,7 @@ const OrderHistoryScreen = (props) => {
         <LoadingBox />
       ) : error ? (
         <MessageBox>{error}</MessageBox>
-      ) : orders.length >= 1 ? (
+      ) : Array.isArray(orders) ? (
         <table className="table">
           <thead>
             <tr>
