@@ -21,7 +21,7 @@ const HomeScreen = () => {
         <LoadingBox></LoadingBox>
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
-      ) : (
+      ) : products.length >= 1 ? (
         <div className="row center">
           {
             (console.log(products),
@@ -30,6 +30,8 @@ const HomeScreen = () => {
             )))
           }
         </div>
+      ) : (
+        <MessageBox variant="danger">No products found</MessageBox>
       )}
     </div>
   );

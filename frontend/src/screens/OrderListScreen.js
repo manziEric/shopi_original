@@ -36,8 +36,8 @@ const OrderListScreen = (props) => {
       {loading ? (
         <LoadingBox />
       ) : error ? (
-        <MessageBox>{error}</MessageBox>
-      ) : (
+        <MessageBox variant="danger">{error}</MessageBox>
+      ) : orders.length >= 1 ? (
         <table className="table">
           <thead>
             <tr>
@@ -85,6 +85,8 @@ const OrderListScreen = (props) => {
             ))}
           </tbody>
         </table>
+      ) : (
+        <MessageBox variant="success">No order found</MessageBox>
       )}
     </div>
   );

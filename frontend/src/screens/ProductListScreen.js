@@ -76,7 +76,7 @@ const ProductListScreen = (props) => {
         <LoadingBox />
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
-      ) : (
+      ) : products.length >= 1 ? (
         <table className="table">
           <thead>
             <tr>
@@ -118,6 +118,8 @@ const ProductListScreen = (props) => {
             ))}
           </tbody>
         </table>
+      ) : (
+        <MessageBox variant="danger">No products found</MessageBox>
       )}
     </div>
   );

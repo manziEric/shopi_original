@@ -21,7 +21,7 @@ const OrderHistoryScreen = (props) => {
         <LoadingBox />
       ) : error ? (
         <MessageBox>{error}</MessageBox>
-      ) : (
+      ) : orders.length >= 1 ? (
         <table className="table">
           <thead>
             <tr>
@@ -56,6 +56,8 @@ const OrderHistoryScreen = (props) => {
             ))}
           </tbody>
         </table>
+      ) : (
+        <MessageBox variant="success">No order found</MessageBox>
       )}
     </div>
   );
