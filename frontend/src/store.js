@@ -11,6 +11,7 @@ import {
   orderPayReducer,
 } from "./reducers/orderReducer";
 import {
+  productCategoryListReducer,
   productCreateReducer,
   productDeleteReducer,
   productDetailsReducer,
@@ -23,6 +24,7 @@ import {
   userListReducer,
   userRegisterReducer,
   userSigninReducer,
+  userTopSellerListReducer,
   userUpdateProfileReducer,
   userUpdateReducer,
 } from "./reducers/userReducers";
@@ -65,6 +67,8 @@ const reducer = combineReducers({
   userList: userListReducer,
   userDelete: userDeleteReducer,
   userUpdate: userUpdateReducer,
+  userTopSellerList: userTopSellerListReducer,
+  productCategoryList: productCategoryListReducer,
 });
 
 //connect redux store to redux browser tool

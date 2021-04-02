@@ -18,6 +18,9 @@ export const addToCart = (productId, qty) => async (dispatch, getState) => {
       price: data.price,
       countInStock: data.countInStock,
       product: data._id,
+      //makes user able to buy products from one seller at a time ?? = Bad
+      //TODO: look at this needs to be removed ??
+      seller: data.seller,
       qty,
     },
   });

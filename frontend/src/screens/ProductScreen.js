@@ -58,6 +58,19 @@ const HomeScreen = (props) => {
               <div className="card card-body">
                 <ul>
                   <li>
+                    Seller
+                    <h2>
+                      <Link to={`/seller/${product.seller._id}`}>
+                        {product.seller.name}
+                      </Link>
+                    </h2>
+                    <Rating
+                      //TODO check why product.seller.seller.rating dont work
+                      rating={product.seller.rating}
+                      numReviews={product.seller.numReviews}
+                    />
+                  </li>
+                  <li>
                     <div className="row">
                       <div>Price</div>
                       <div className="price">${product.price}</div>

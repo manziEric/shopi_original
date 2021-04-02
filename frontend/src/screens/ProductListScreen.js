@@ -14,6 +14,8 @@ import {
 } from "../constants/productConstants";
 
 const ProductListScreen = (props) => {
+  //if its greater or equel to 0 its true
+  const sellerMode = props.match.path.indexOf("/seller") >= 0;
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
 
@@ -32,6 +34,9 @@ const ProductListScreen = (props) => {
     success: successDelete,
   } = productDelete;
 
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -43,8 +48,16 @@ const ProductListScreen = (props) => {
       dispatch({ type: PRODUCT_DELETE_RESET });
     }
 
-    dispatch(listProducts());
-  }, [createdProduct, dispatch, props.history, successCreate, successDelete]);
+    dispatch(listProducts({ seller: sellerMode ? userInfo._id : "" }));
+  }, [
+    createdProduct,
+    dispatch,
+    props.history,
+    successCreate,
+    successDelete,
+    sellerMode,
+    userInfo,
+  ]);
 
   const deleteHandler = (product) => {
     //TODO: delete image from upload file after delete
@@ -76,7 +89,7 @@ const ProductListScreen = (props) => {
         <LoadingBox />
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
-      ) : products.length >= 1 ? (
+      ) : Array.isArray(products) ? (
         <table className="table">
           <thead>
             <tr>

@@ -1,9 +1,47 @@
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import Order from "../models/orderModel.js";
-import { isAuth, isAdmin } from "../utils.js";
+import { isAuth, isAdmin, isSellerOrAdmin } from "../utils.js";
 
 const orderRouter = express.Router();
+
+//router orderlist
+orderRouter.get(
+  "/",
+  isAuth,
+  isSellerOrAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const seller = req.query.seller || "";
+    const sellerFilter = seller ? { seller } : {};
+    const orders = await Order.find({ ...sellerFilter }).populate(
+      "user",
+      "name"
+    );
+    res.send(orders);
+  })
+);
+
+orderRouter.get(
+  "/:id",
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const order = await Order.findById(req.params.id);
+    if (order) {
+      res.send(order);
+    } else {
+      res.status(404).send({ message: "Order Not Found" });
+    }
+  })
+);
+
+orderRouter.get(
+  "/mine",
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const orders = await Order.find({ user: req.user._id });
+    res.send(orders);
+  })
+);
 
 orderRouter.post(
   "/",
@@ -13,6 +51,7 @@ orderRouter.post(
       res.status(400).send({ message: "Cart is empty" });
     } else {
       const order = new Order({
+        seller: req.body.orderItems[0].seller,
         orderItems: req.body.orderItems,
         shippingAddress: req.body.shippingAddress,
         paymentMethod: req.body.paymentMethod,
@@ -27,19 +66,6 @@ orderRouter.post(
       res
         .status(201)
         .send({ message: "New Order Created", order: createdOrder });
-    }
-  })
-);
-
-orderRouter.get(
-  "/:id",
-  isAuth,
-  expressAsyncHandler(async (req, res) => {
-    const order = await Order.findById(req.params.id);
-    if (order) {
-      res.send(order);
-    } else {
-      res.status(404).send({ message: "Order Not Found" });
     }
   })
 );
@@ -63,26 +89,6 @@ orderRouter.put(
     } else {
       res.status(404).send({ message: "Order Not Found" });
     }
-  })
-);
-
-orderRouter.get(
-  "/mine",
-  isAuth,
-  expressAsyncHandler(async (req, res) => {
-    const orders = await Order.find({ user: req.user._id });
-    res.send(orders);
-  })
-);
-
-//router orderlist
-orderRouter.get(
-  "/",
-  isAuth,
-  isAdmin,
-  expressAsyncHandler(async (req, res) => {
-    const orders = await Order.find({}).populate("user", "name");
-    res.send(orders);
   })
 );
 
