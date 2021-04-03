@@ -158,7 +158,7 @@ function App() {
             ) : errorCategories ? (
               <MessageBox variant="danger">{errorCategories}</MessageBox>
             ) : (
-              categories.map((c) => (
+              categories?.map((c) => (
                 <li key={c}>
                   <Link
                     to={`/search/category/${c}`}
