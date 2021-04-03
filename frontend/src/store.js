@@ -16,6 +16,7 @@ import {
   productDeleteReducer,
   productDetailsReducer,
   productListReducer,
+  productReviewCreateReducer,
   productUpdateReducer,
 } from "./reducers/productReducers";
 import {
@@ -69,6 +70,7 @@ const reducer = combineReducers({
   userUpdate: userUpdateReducer,
   userTopSellerList: userTopSellerListReducer,
   productCategoryList: productCategoryListReducer,
+  productReviewCreate: productReviewCreateReducer,
 });
 
 //connect redux store to redux browser tool

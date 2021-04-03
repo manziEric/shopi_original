@@ -25,6 +25,28 @@ userRouter.get(
   })
 );
 
+userRouter.get(
+  "/",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const users = await User.find({});
+    res.send(users);
+  })
+);
+
+userRouter.get(
+  "/:id",
+  expressAsyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id);
+    if (user) {
+      res.send(user);
+    } else {
+      res.status(404).send({ message: "User Not Found" });
+    }
+  })
+);
+
 userRouter.post(
   "/signin",
   expressAsyncHandler(async (req, res) => {
@@ -66,18 +88,6 @@ userRouter.post(
   })
 );
 
-userRouter.get(
-  "/:id",
-  expressAsyncHandler(async (req, res) => {
-    const user = await User.findById(req.params.id);
-    if (user) {
-      res.send(user);
-    } else {
-      res.status(404).send({ message: "User Not Found" });
-    }
-  })
-);
-
 //isAuth = only logged in user can get this Route
 userRouter.put(
   "/profile",
@@ -109,13 +119,24 @@ userRouter.put(
   })
 );
 
-userRouter.get(
-  "/",
+userRouter.put(
+  "/:id",
   isAuth,
   isAdmin,
   expressAsyncHandler(async (req, res) => {
-    const users = await User.find({});
-    res.send(users);
+    const user = await User.findById(req.params.id);
+    if (user) {
+      user.name = req.body.name || user.name;
+      user.email = req.body.email || user.email;
+      user.isSeller = Boolean(req.body.isSeller);
+      user.isAdmin = Boolean(req.body.isAdmin);
+
+      //Save to MongoDb database
+      const updatedUser = await user.save();
+      res.send({ message: "User Updated", user: updatedUser });
+    } else {
+      res.status(404).send({ message: "User Not Found" });
+    }
   })
 );
 
@@ -132,27 +153,6 @@ userRouter.delete(
       }
       const deleteUser = await user.remove();
       res.send({ message: "User Deleted", user: deleteUser });
-    } else {
-      res.status(404).send({ message: "User Not Found" });
-    }
-  })
-);
-
-userRouter.put(
-  "/:id",
-  isAuth,
-  isAdmin,
-  expressAsyncHandler(async (req, res) => {
-    const user = await User.findById(req.params.id);
-    if (user) {
-      user.name = req.body.name || user.name;
-      user.email = req.body.email || user.email;
-      user.isSeller = req.body.isSeller || user.isSeller;
-      user.isAdmin = req.body.isAdmin || user.isAdmin;
-
-      //Save to MongoDb database
-      const updatedUser = await user.save();
-      res.send({ message: "User Updated", user: updatedUser });
     } else {
       res.status(404).send({ message: "User Not Found" });
     }
