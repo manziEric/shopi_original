@@ -4,8 +4,9 @@ import { listOderMine } from "../actions/orderActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 
+//TODO: Display all the items of order history and not just the last order
+
 const OrderHistoryScreen = (props) => {
-  //TODO: Fix: loading data error
   const orderMineList = useSelector((state) => state.orderMineList);
   const { loading, error, orders } = orderMineList;
 
@@ -38,7 +39,7 @@ const OrderHistoryScreen = (props) => {
               <tr key={order._id}>
                 <td>{order._id}</td>
                 <td>{order.createdAt.substring(0, 10)}</td>
-                <td>{order.totalprice.toFixed(2)}</td>
+                <td>{order.totalprice?.toFixed(2)}</td>
                 <td>{order.isPaid ? order.paidAt.substring(0, 10) : "No"}</td>
                 <td>
                   {order.isDeliverd ? order.deliverdAt.substring(0, 10) : "No"}

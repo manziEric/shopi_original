@@ -19,6 +19,11 @@ export const prices = [
     min: 100,
     max: 1000,
   },
+  {
+    name: `+ $1000`,
+    min: 1000,
+    max: 100000,
+  },
 ];
 
 export const ratings = [

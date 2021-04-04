@@ -26,6 +26,7 @@ import {
 //to respond to the productAction (dispatch) we need a productReducer.js
 // send dispatch data as an (action) to productReducer.js
 export const listProducts = ({
+  pageNumber = "",
   seller = "",
   name = "",
   category = "",
@@ -38,8 +39,9 @@ export const listProducts = ({
     type: PRODUCT_LIST_REQUEST,
   });
   try {
+    //send data to backend to rout "/"
     const { data } = await Axios.get(
-      `/api/products?seller=${seller}&name=${name}&category=${category}&min=${min}&max=${max}&rating=${rating}&rating=${rating}&order=${order}`
+      `/api/products?pageNumber=${pageNumber}&seller=${seller}&name=${name}&category=${category}&min=${min}&max=${max}&rating=${rating}&rating=${rating}&order=${order}`
     );
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
@@ -76,7 +78,6 @@ export const detailsProduct = (productId) => async (dispatch) => {
       payload: data,
     });
   } catch (error) {
-    console.log("error");
     dispatch({
       type: PRODUCT_DETAILS_FAIL,
       payload:

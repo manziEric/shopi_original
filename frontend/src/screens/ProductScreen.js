@@ -7,6 +7,8 @@ import MessageBox from "../components/MessageBox";
 import { createReview, detailsProduct } from "../actions/productActions";
 import { PRODUCT_REVIEW_CREATE_RESET } from "../constants/productConstants";
 
+//TODO: fix after user make one comment, when on other product error is actief
+
 const HomeScreen = (props) => {
   const [qty, setQty] = useState(1);
   const [rating, setRating] = useState(0);
@@ -67,7 +69,9 @@ const HomeScreen = (props) => {
           <Link to="/"> Back to result</Link>
           <div className="row top">
             <div className="col-2">
-              <img className="large" src={product.image} alt={product.name} />
+              <div className="product-image">
+                <img className="large" src={product.image} alt={product.name} />
+              </div>
             </div>
             <div className="col-1">
               <ul>
@@ -80,7 +84,6 @@ const HomeScreen = (props) => {
                     numReviews={product.numReviews}
                   ></Rating>
                 </li>
-                <li>price: ${product.price}</li>
                 <li>
                   Description:
                   <p>{product.description}</p>
@@ -90,19 +93,19 @@ const HomeScreen = (props) => {
             <div className="col-1">
               <div className="card card-body">
                 <ul>
-                  <li>
+                  {/* <li>
                     Seller
                     <h2>
                       <Link to={`/seller/${product.seller._id}`}>
                         {product.seller.name}
+                        lol
                       </Link>
-                    </h2>
-                    <Rating
-                      //TODO check why product.seller.seller.rating dont work
-                      rating={product.seller.rating}
-                      numReviews={product.seller.numReviews}
+                    </h2>                   
+                    <Rating                    
+                      rating={product.seller.seller.rating}
+                      numReviews={product.seller.seller.numReviews}
                     />
-                  </li>
+                  </li> */}
                   <li>
                     <div className="row">
                       <div>Price</div>

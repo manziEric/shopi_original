@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 import {
   createProduct,
   deleteProduct,
@@ -14,10 +15,13 @@ import {
 } from "../constants/productConstants";
 
 const ProductListScreen = (props) => {
+  const { pageNumber = 1 } = useParams();
+
   //if its greater or equel to 0 its true
   const sellerMode = props.match.path.indexOf("/seller") >= 0;
+
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products } = productList;
+  const { loading, error, products, page, pages } = productList;
 
   const productCreate = useSelector((state) => state.productCreate);
   const {
@@ -48,7 +52,9 @@ const ProductListScreen = (props) => {
       dispatch({ type: PRODUCT_DELETE_RESET });
     }
 
-    dispatch(listProducts({ seller: sellerMode ? userInfo._id : "" }));
+    dispatch(
+      listProducts({ seller: sellerMode ? userInfo._id : "", pageNumber })
+    );
   }, [
     createdProduct,
     dispatch,
@@ -57,6 +63,7 @@ const ProductListScreen = (props) => {
     successDelete,
     sellerMode,
     userInfo,
+    pageNumber,
   ]);
 
   const deleteHandler = (product) => {
@@ -90,47 +97,60 @@ const ProductListScreen = (props) => {
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : Array.isArray(products) ? (
-        <table className="table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>NAME</th>
-              <th>PRICE</th>
-              <th>CATEGORY</th>
-              <th>BRAND</th>
-              <th>ACTIONS</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product) => (
-              <tr key={product._id}>
-                <td>{product._id}</td>
-                <td>{product.name}</td>
-                <td>{product.price}</td>
-                <td>{product.category}</td>
-                <td>{product.brand}</td>
-                <td>
-                  <button
-                    type="button"
-                    className="small"
-                    onClick={() => {
-                      props.history.push(`/product/${product._id}/edit`);
-                    }}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    type="button"
-                    className="small"
-                    onClick={() => deleteHandler(product)}
-                  >
-                    Delete
-                  </button>
-                </td>
+        <>
+          <table className="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>PRICE</th>
+                <th>CATEGORY</th>
+                <th>BRAND</th>
+                <th>ACTIONS</th>
               </tr>
+            </thead>
+            <tbody>
+              {products.map((product) => (
+                <tr key={product._id}>
+                  <td>{product._id}</td>
+                  <td>{product.name}</td>
+                  <td>{product.price}</td>
+                  <td>{product.category}</td>
+                  <td>{product.brand}</td>
+                  <td>
+                    <button
+                      type="button"
+                      className="small"
+                      onClick={() => {
+                        props.history.push(`/product/${product._id}/edit`);
+                      }}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      type="button"
+                      className="small"
+                      onClick={() => deleteHandler(product)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div className="pagination row center">
+            {[...Array(pages).keys()].map((x) => (
+              <Link
+                className={x + 1 === page ? "active" : ""}
+                key={x + 1}
+                to={`/productlist/pageNumber/${x + 1}`}
+              >
+                {x + 1}
+              </Link>
             ))}
-          </tbody>
-        </table>
+          </div>
+        </>
       ) : (
         <MessageBox variant="danger">No products found</MessageBox>
       )}

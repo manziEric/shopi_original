@@ -9,11 +9,12 @@ import { listProducts } from "../actions/productActions";
 import { listTopSellers } from "../actions/userActions";
 import { Link } from "react-router-dom";
 
+//TODO: featured products need to get own pagination
+
 const HomeScreen = () => {
   //get data object from Redux Store
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
-
   const userTopSellerList = useSelector((state) => state.userTopSellerList);
   const {
     loading: loadingSellers,

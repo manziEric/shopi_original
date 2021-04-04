@@ -94,7 +94,7 @@ function App() {
                     <Link to="/orderhistory">Order History</Link>
                   </li>
                   <li>
-                    <Link to="#signout" onClick={signoutHandler}>
+                    <Link to="/" onClick={signoutHandler}>
                       Sign Out
                     </Link>
                   </li>
@@ -158,7 +158,7 @@ function App() {
             ) : errorCategories ? (
               <MessageBox variant="danger">{errorCategories}</MessageBox>
             ) : (
-              categories?.map((c) => (
+              categories.map((c) => (
                 <li key={c}>
                   <Link
                     to={`/search/category/${c}`}
@@ -197,7 +197,7 @@ function App() {
             exact
           />
           <Route
-            path="/search/category/:category/name/:name/min/:min/max/:max/rating/:rating/order/:order"
+            path="/search/category/:category/name/:name/min/:min/max/:max/rating/:rating/order/:order/pageNumber/:pageNumber"
             component={SearchScreen}
             exact
           />
@@ -207,6 +207,11 @@ function App() {
           <AdminRoute path="/orderlist" component={OrderListScreen} exact />
           <AdminRoute path="/userlist" component={UserListScreen} />
           <AdminRoute path="/user/:id/edit" component={UserEditScreen} />
+          <AdminRoute
+            path="/productlist/pageNumber/:pageNumber"
+            component={ProductListScreen}
+            exact
+          />
           <SellerRoute path="/orderlist/seller" component={OrderListScreen} />
           <SellerRoute
             path="/productlist/seller"

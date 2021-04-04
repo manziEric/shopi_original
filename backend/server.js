@@ -19,11 +19,6 @@ mongoose.connect(process.env.MONGODB_URL || "mongodb://localhost/amazona", {
   useCreateIndex: true,
 });
 
-//paypal route. get info from env file
-app.get("/api/config/paypal", (req, res) => {
-  res.send(process.env.PAYPAL_CLIENT_ID || "sb");
-});
-
 ///////// middelware //////////////
 
 // parse json data in req body
@@ -40,16 +35,6 @@ app.use("/api/uploads", uploadRouter);
 const __dirname = path.resolve();
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
-//Serve react files inside build folder in frontend for Heroku server
-app.use(express.static(path.join(__dirname, "/frontend/build")));
-app.get("*", (req, res) =>
-  res.sendFile(path.join(__dirname, "/frontend/build/index.html"))
-);
-
-// app.get("/", (req, res) => {
-//   res.send("Server is ready");
-// });
-
 //products route
 app.use("/api/products", productRouter);
 
@@ -60,6 +45,21 @@ app.use((err, req, res, next) => {
 
 //order
 app.use("/api/orders", orderRouter);
+
+//paypal route. get info from env file
+app.get("/api/config/paypal", (req, res) => {
+  res.send(process.env.PAYPAL_CLIENT_ID || "sb");
+});
+
+//Serve react files inside build folder in frontend for Heroku server
+// app.use(express.static(path.join(__dirname, "/frontend/build")));
+// app.get("*", (req, res) =>
+//   res.sendFile(path.join(__dirname, "/frontend/build/index.html"))
+// );
+
+app.get("/", (req, res) => {
+  res.send("Server is ready");
+});
 
 //server
 const PORT = process.env.PORT || 5000;

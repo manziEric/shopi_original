@@ -41,7 +41,6 @@ const OrderScreen = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    //TODO: afteer pay bannkcontact or sofort rerender page for update order pay
     const addPayPalScript = async () => {
       //Client ID
       const { data } = await Axios.get("/api/config/paypal");
