@@ -33,6 +33,9 @@ header {
 }
 main {
   grid-area: main;
+}
+.route-div {
+  grid-area: main;
   padding: 1rem;
 }
 footer {
@@ -150,7 +153,7 @@ aside {
   position: fixed;
   width: 30rem;
   height: 100%;
-  background-color: #efefef;
+  background-color: #fff;
   z-index: 1000;
   transform: translate(-30rem);
   transition: all 0.5s;
@@ -177,6 +180,7 @@ aside li {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
+  font-size: 1.5rem;
 }
 button.close-sidebar {
   padding: 0.3rem 0.8rem;
@@ -336,6 +340,7 @@ img.large {
   border-radius: 0.5rem 0 0 0.5rem;
   border-right: none;
   margin-left: 0.5rem;
+  width: 100rem;
 }
 .active {
   font-weight: bold;
@@ -356,4 +361,240 @@ img.large {
 .pagination a.active {
   font-weight: bold;
   background-color: #5d5dff;
+}
+
+/* Homescreen */
+#headSection {
+  height: 90vh;
+}
+.homeSection {
+  position: relative;
+  height: 70vh;
+  overflow: hidden;
+  z-index: -1;
+}
+#rectangle {
+  width: 70vw;
+  height: 50vh;
+  background-image: url(./image/mobile-phone-1875813_1280.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  border: 1px solid rgb(228, 228, 228);
+  box-shadow: 1px 1px 3px 0px rgb(175, 175, 175);
+  position: absolute;
+  margin-top: 25%;
+  left: 15vw;
+}
+.section__bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background-image: linear-gradient(#ff9d2f, #ff6126); */
+  background-image: url(./image/five-bulb-lights-1036936.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: skewY(-6deg);
+  transform-origin: top left;
+  z-index: -1;
+}
+.container-home {
+  height: 100vh;
+  width: 100%;
+  background-image: url(./image/background13.png);
+  background-position: center top;
+  background-size: cover;
+  padding-left: 5%;
+  padding-right: 5%;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+.content h1 {
+  font-size: 60px;
+  font-weight: 100;
+  margin-top: 24px;
+  margin-bottom: 15px;
+  color: #232d60;
+}
+.content p {
+  font-size: 20px;
+  color: #6a7199;
+}
+.content {
+  margin-left: 10%;
+  margin-top: 10%;
+  animation: moveright 1s linear 1;
+  animation-delay: 1s;
+  visibility: hidden;
+  animation-fill-mode: forwards;
+}
+/* animate the text content  */
+@keyframes moveright {
+  0% {
+    transform: translateX(-100px);
+    visibility: visible;
+  }
+  100% {
+    transform: translateX(0);
+    visibility: visible;
+  }
+}
+.content .btn {
+  display: inline-block;
+  background: linear-gradient(45deg, #87adfe, #ff77cd);
+  border-radius: 6px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: #fff;
+  box-shadow: 3px 8px 22px rgba(94, 28, 68, 0.15);
+}
+.arrow-icons {
+  margin-top: 40px;
+  display: flex;
+}
+.arrow-icons img {
+  width: 40px;
+  margin-right: 25px;
+}
+.feature-img {
+  height: 70%;
+  position: absolute;
+  top: 10rem;
+  right: 100px;
+  animation: zoomin 1.5s linear 1;
+  animation-delay: 0.5s;
+  visibility: hidden;
+  animation-fill-mode: forwards;
+}
+/* animate the image  */
+@keyframes zoomin {
+  0% {
+    transform: scale(0.5);
+    visibility: visible;
+  }
+  100% {
+    transform: scale(1);
+    visibility: visible;
+  }
+}
+.homeScreen-h1 {
+  text-align: center;
+  margin-top: 5rem;
+  font-size: 3rem;
+}
+.homeScreen-carousel {
+  margin-top: 10rem;
+}
+
+.homeScreen-card {
+  border: 1px solid rgb(175, 175, 175);
+  box-shadow: 1px 1px 3px 0px rgb(175, 175, 175);
+}
+
+#section-b {
+  padding: 2em 1em 2em;
+  margin-bottom: 5rem;
+}
+
+#section-b ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#section-b li {
+  margin-bottom: 1em;
+  background: #fff;
+  color: #333;
+}
+
+.card-content {
+  padding: 1.5em;
+  min-height: 30rem;
+  font-size: 1.5rem;
+}
+.card-title {
+  font-weight: 900;
+  font-size: 3rem;
+}
+.cardImg {
+  display: block;
+  width: 100%;
+  height: 20rem;
+}
+#showcase {
+  height: 450px;
+  color: #fff;
+  text-align: center;
+  margin-top: 10vh;
+}
+
+#showcase .bg-image {
+  position: absolute;
+  background: #333 url(./image/blue-sky-blur-clear-sky-color-281260.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 650px;
+  z-index: -1;
+}
+
+#showcase h1 {
+  padding-top: 25vh;
+  padding-bottom: 0;
+}
+
+#showcase .content-wrap {
+  padding: 0 1.5em;
+  margin-bottom: 2vh;
+  font-size: 2rem;
+}
+
+.content-wrap h1 {
+  margin: 0;
+  padding: 100px 0;
+  font: 44px "Arial";
+  text-align: center;
+}
+/* Button and background */
+.homebtn {
+  display: inline-block;
+  background: #52c0fc;
+  color: #fff;
+  text-decoration: none;
+  padding: 1em 2em;
+  border: 1px solid rgb(255, 253, 253);
+  margin: 0.5em 0;
+}
+
+.homebtn:hover {
+  background: #ff9c2f;
+  color: #fff;
+}
+@media (min-width: 700px) {
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr repeat(2, minmax(auto, 50em)) 1fr;
+  }
+  .content-wrap,
+  #section-b ul {
+    grid-column: 2/4;
+  }
+
+  #section-b ul {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  #section-b li {
+    width: 31%;
+  }
 }

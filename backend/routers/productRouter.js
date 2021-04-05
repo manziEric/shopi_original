@@ -103,6 +103,7 @@ productRouter.get(
   })
 );
 
+//TODO: change images no-img.png to dynamic
 productRouter.post(
   "/",
   isAuth,
@@ -111,7 +112,7 @@ productRouter.post(
     const product = new Product({
       name: "sample name" + Date.now(),
       seller: req.user._id,
-      image: "/images/p1.jpeg",
+      image: "/images/no-img.png",
       price: 0,
       category: "sample category",
       brand: "sample brand",

@@ -174,49 +174,59 @@ function App() {
         <main>
           {/* the :id? means its optional user can use this rout with out id of product */}
           <Route path="/" component={HomeScreen} exact />
-          <Route path="/cart/:id?" component={CartScreen} />
-          <Route path="/product/:id" component={ProductScreen} exact />
-          <Route path="/product/:id/edit" component={ProductEditScreen} exact />
-          <Route path="/register" component={RegisterScreen} />
-          <Route path="/signin" component={SigninScreen} />
-          <Route path="/shipping" component={ShippingAddressScreen} />
-          <Route path="/payment" component={PaymentMethodScreen} />
-          <Route path="/placeorder" component={PlaceOrderScreen} />
-          <Route path="/order/:id" component={OrderScreen} />
-          <Route path="/orderhistory" component={OrderHistoryScreen} />
-          <Route path="/seller/:id" component={SellerScreen} />
-          <Route path="/search/name/:name?" component={SearchScreen} exact />
-          <Route
-            path="/search/category/:category"
-            component={SearchScreen}
-            exact
-          />
-          <Route
-            path="/search/category/:category/name/:name"
-            component={SearchScreen}
-            exact
-          />
-          <Route
-            path="/search/category/:category/name/:name/min/:min/max/:max/rating/:rating/order/:order/pageNumber/:pageNumber"
-            component={SearchScreen}
-            exact
-          />
+          <div className="route-div">
+            <Route path="/cart/:id?" component={CartScreen} />
+            <Route path="/product/:id" component={ProductScreen} exact />
+            <Route
+              path="/product/:id/edit"
+              component={ProductEditScreen}
+              exact
+            />
+            <Route path="/register" component={RegisterScreen} />
+            <Route path="/signin" component={SigninScreen} />
+            <Route path="/shipping" component={ShippingAddressScreen} />
+            <Route path="/payment" component={PaymentMethodScreen} />
+            <Route path="/placeorder" component={PlaceOrderScreen} />
+            <Route path="/order/:id" component={OrderScreen} />
+            <Route path="/orderhistory" component={OrderHistoryScreen} />
+            <Route path="/seller/:id" component={SellerScreen} />
+            <Route path="/search/name/:name?" component={SearchScreen} exact />
+            <Route
+              path="/search/category/:category"
+              component={SearchScreen}
+              exact
+            />
+            <Route
+              path="/search/category/:category/name/:name"
+              component={SearchScreen}
+              exact
+            />
+            <Route
+              path="/search/category/:category/name/:name/min/:min/max/:max/rating/:rating/order/:order/pageNumber/:pageNumber"
+              component={SearchScreen}
+              exact
+            />
 
-          <PrivateRoute path="/profile" component={ProfileScreen} />
-          <AdminRoute path="/productlist" component={ProductListScreen} exact />
-          <AdminRoute path="/orderlist" component={OrderListScreen} exact />
-          <AdminRoute path="/userlist" component={UserListScreen} />
-          <AdminRoute path="/user/:id/edit" component={UserEditScreen} />
-          <AdminRoute
-            path="/productlist/pageNumber/:pageNumber"
-            component={ProductListScreen}
-            exact
-          />
-          <SellerRoute path="/orderlist/seller" component={OrderListScreen} />
-          <SellerRoute
-            path="/productlist/seller"
-            component={ProductListScreen}
-          />
+            <PrivateRoute path="/profile" component={ProfileScreen} />
+            <AdminRoute
+              path="/productlist"
+              component={ProductListScreen}
+              exact
+            />
+            <AdminRoute path="/orderlist" component={OrderListScreen} exact />
+            <AdminRoute path="/userlist" component={UserListScreen} />
+            <AdminRoute path="/user/:id/edit" component={UserEditScreen} />
+            <AdminRoute
+              path="/productlist/pageNumber/:pageNumber"
+              component={ProductListScreen}
+              exact
+            />
+            <SellerRoute path="/orderlist/seller" component={OrderListScreen} />
+            <SellerRoute
+              path="/productlist/seller"
+              component={ProductListScreen}
+            />
+          </div>
         </main>
         <footer className="row center">All rights reserved</footer>
       </div>
