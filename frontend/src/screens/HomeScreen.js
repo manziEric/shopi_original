@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
@@ -8,7 +8,14 @@ import MessageBox from "../components/MessageBox";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../actions/productActions";
 import { listTopSellers } from "../actions/userActions";
-import image from "../image/img.png";
+import img from "../image/img.png";
+import img1 from "../image/img1.png";
+import img2 from "../image/img2.png";
+import img3 from "../image/img3.png";
+import img4 from "../image/img4.png";
+import img5 from "../image/img5.png";
+import img6 from "../image/img6.png";
+import img7 from "../image/img7.png";
 import backArrow from "../image/back-arrow.png";
 import nextArrow from "../image/next-arrow.png";
 import image1 from "../image/augmented-reality-3468596_1280.jpg";
@@ -18,6 +25,9 @@ import image3 from "../image/tablet-1719191_1280.jpg";
 //TODO: featured products need to get own pagination
 
 const HomeScreen = () => {
+  const [imgs, setImgs] = useState(0);
+  const imgsArray = [img, img1, img2, img3, img4, img5, img6, img7];
+
   //get data object from Redux Store
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
@@ -36,6 +46,19 @@ const HomeScreen = () => {
     dispatch(listProducts({}));
     dispatch(listTopSellers());
   }, [dispatch]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setImgs((imgs) => imgs + 1);
+    }, 8000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  if (imgs === imgsArray.length) {
+    setImgs(0);
+  }
+
   return (
     <div>
       <div className="container-home">
@@ -51,7 +74,7 @@ const HomeScreen = () => {
             <img src={nextArrow} alt="" />
           </div>
         </div>
-        <img src={image} alt="" className="feature-img" />
+        <img key={imgs} src={imgsArray[imgs]} alt="" className="feature-img" />
       </div>
 
       <div>
@@ -94,7 +117,7 @@ const HomeScreen = () => {
               infiniteLoop
               showThumbs={false}
             >
-              {products === undefined
+              {products !== undefined
                 ? products.map((product) => (
                     <Product key={product._id} product={product} />
                   ))
