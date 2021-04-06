@@ -330,6 +330,7 @@ img.large {
   max-width: 30rem;
 }
 
+/* TODO: fix search bar to be responsive  */
 /* Search  */
 .search button {
   border-radius: 0 0.5rem 0.5rem 0;
@@ -340,7 +341,7 @@ img.large {
   border-radius: 0.5rem 0 0 0.5rem;
   border-right: none;
   margin-left: 0.5rem;
-  width: 100rem;
+  width: 80rem;
 }
 .active {
   font-weight: bold;
@@ -582,7 +583,7 @@ img.large {
 @media (min-width: 700px) {
   .grid {
     display: grid;
-    grid-template-columns: 1fr repeat(2, minmax(auto, 50em)) 1fr;
+    grid-template-columns: 1fr repeat(2, minmax(auto, 40rem)) 1fr;
   }
   .content-wrap,
   #section-b ul {

@@ -94,9 +94,11 @@ const HomeScreen = () => {
               infiniteLoop
               showThumbs={false}
             >
-              {products.map((product) => (
-                <Product key={product._id} product={product} />
-              ))}
+              {products === undefined
+                ? products.map((product) => (
+                    <Product key={product._id} product={product} />
+                  ))
+                : "No Products Found"}
             </Carousel>
           </>
         )}
@@ -137,7 +139,7 @@ const HomeScreen = () => {
             <div className="homeScreen-card">
               <img className="cardImg" src={image2} alt="" />
               <div className="card-content">
-                <h3 className="card-title">Development</h3>
+                <h3 className="card-title">Mobile Development</h3>
                 <p>
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo
                   beatae ullam labore a, ipsa dolorum. Odio, temporibus fugit!
