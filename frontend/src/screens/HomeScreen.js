@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-import { Link } from "react-router-dom";
 import Product from "../components/Product";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
@@ -26,6 +25,14 @@ import image3 from "../image/tablet-1719191_1280.jpg";
 
 const HomeScreen = () => {
   const [imgs, setImgs] = useState(0);
+  const [changeBackArrow, setChangeBackArrow] = useState({
+    arrowDirection: "",
+    arrow: backArrow,
+  });
+  const [changeNextArrow, setChangeNextArrow] = useState({
+    arrowDirection: "",
+    arrow: nextArrow,
+  });
   const imgsArray = [img, img1, img2, img3, img4, img5, img6, img7];
 
   //get data object from Redux Store
@@ -59,6 +66,15 @@ const HomeScreen = () => {
     setImgs(0);
   }
 
+  const changeArrowDirection = () => {
+    setChangeBackArrow({ arrowDirection: "nextArrow", arrow: nextArrow });
+    setChangeNextArrow({ arrowDirection: "backArrow", arrow: backArrow });
+  };
+  const defaultArrowDirection = () => {
+    setChangeBackArrow({ arrowDirection: "", arrow: backArrow });
+    setChangeNextArrow({ arrowDirection: "", arrow: nextArrow });
+  };
+
   return (
     <div>
       <div className="container-home">
@@ -70,8 +86,19 @@ const HomeScreen = () => {
           </h1>
           <p>lorem ipsum dorem forem larom text</p>
           <div className="arrow-icons">
-            <img src={backArrow} alt="" />
-            <img src={nextArrow} alt="" />
+            <img
+              className={changeBackArrow?.arrowDirection}
+              onMouseOver={changeArrowDirection}
+              onMouseLeave={defaultArrowDirection}
+              src={changeBackArrow.arrow}
+              alt="back arrow"
+            />
+            <img
+              className={changeNextArrow?.arrowDirection}
+              id="defaultArrowDirection"
+              src={changeNextArrow.arrow}
+              alt="next arrow"
+            />
           </div>
         </div>
         <img key={imgs} src={imgsArray[imgs]} alt="" className="feature-img" />
@@ -129,7 +156,7 @@ const HomeScreen = () => {
       </div>
 
       {/* Showcase */}
-      <div id="showcase" className="grid">
+      <div id="showcase">
         <div className="bg-image"></div>
         <div className="content-wrap">
           <h1>Welocome to acme web selotions</h1>

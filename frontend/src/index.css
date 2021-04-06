@@ -153,7 +153,7 @@ aside {
   position: fixed;
   width: 30rem;
   height: 100%;
-  background-color: #fff;
+  background-color: #f9f9f9;
   z-index: 1000;
   transform: translate(-30rem);
   transition: all 0.5s;
@@ -370,11 +370,11 @@ img.large {
 }
 .homeSection {
   position: relative;
-  height: 80vh;
+  height: 100vh;
   overflow: hidden;
   z-index: -1;
 }
-#rectangle {
+/* #rectangle {
   width: 70vw;
   height: 50vh;
   background-image: url(./image/mobile-phone-1875813_1280.jpg);
@@ -386,7 +386,7 @@ img.large {
   position: absolute;
   margin-top: 25%;
   left: 15vw;
-}
+} */
 .section__bg {
   position: absolute;
   top: 0;
@@ -490,7 +490,7 @@ img.large {
   font-size: 3rem;
 }
 .homeScreen-carousel {
-  margin-top: -10rem;
+  margin-top: 10rem;
 }
 
 .homeScreen-card {
@@ -536,17 +536,6 @@ img.large {
   margin-top: 10vh;
 }
 
-#showcase .bg-image {
-  position: absolute;
-  background: #333 url(./image/blue-sky-blur-clear-sky-color-281260.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  height: 650px;
-  z-index: -1;
-}
-
 #showcase h1 {
   padding-top: 25vh;
   padding-bottom: 0;
@@ -579,6 +568,25 @@ img.large {
   background: #ff9c2f;
   color: #fff;
 }
+.featured-Products {
+  margin-bottom: 10rem;
+}
+.backArrow {
+  transform: rotate(180deg);
+}
+.nextArrow {
+  transform: rotate(180deg);
+}
+#defaultArrowDirection:hover {
+  box-shadow: 1px 1px 2px 1px rgb(0, 0, 0);
+  border-radius: 50%;
+}
+.nextArrow:hover {
+  box-shadow: 1px 1px 2px 1px rgb(0, 0, 0);
+  border-radius: 50%;
+}
+
+/* Mobile screen  */
 @media (min-width: 700px) {
   .grid {
     display: grid;
@@ -588,16 +596,60 @@ img.large {
   #section-b ul {
     grid-column: 2/4;
   }
-
   #section-b ul {
     display: flex;
     justify-content: space-around;
   }
-
   #section-b li {
     width: 31%;
   }
+  #showcase {
+    position: relative;
+  }
+  .bg-image {
+    position: absolute;
+    background: #333 url(./image/blue-sky-blur-clear-sky-color-281260.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 650px;
+    z-index: -1;
+  }
 }
-.featured-Products {
-  margin-bottom: 10rem;
+@media (max-width: 699px) {
+  .container-home {
+    height: 150rem;
+  }
+  .feature-img {
+    height: 35%;
+    position: absolute;
+    top: 60rem;
+    right: 60px;
+    animation: zoomin 1.5s linear 1;
+    animation-delay: 0.5s;
+    visibility: hidden;
+    animation-fill-mode: forwards;
+  }
+  #showcase {
+    position: relative;
+  }
+  .bg-image {
+    position: absolute;
+    background: #333 url(./image/blue-sky-blur-clear-sky-color-281260.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 650px;
+    z-index: -1;
+  }
+  #section-b {
+    padding: 5em 17em 2em;
+    margin-bottom: 5rem;
+    width: 50rem;
+  }
+  #section-b li {
+    margin-bottom: 2rem;
+  }
 }
