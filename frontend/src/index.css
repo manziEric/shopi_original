@@ -370,7 +370,7 @@ img.large {
 }
 .homeSection {
   position: relative;
-  height: 70vh;
+  height: 80vh;
   overflow: hidden;
   z-index: -1;
 }
@@ -395,9 +395,8 @@ img.large {
   left: 0;
   width: 100%;
   height: 100%;
-  /* background-image: linear-gradient(#ff9d2f, #ff6126); */
-  background-image: url(./image/five-bulb-lights-1036936.jpg);
-  background-position: center center;
+  background-image: url(./image/poster-1663612_1280.jpg);
+  background-position: center bottom;
   background-repeat: no-repeat;
   background-size: cover;
   transform: skewY(-6deg);
@@ -491,7 +490,7 @@ img.large {
   font-size: 3rem;
 }
 .homeScreen-carousel {
-  margin-top: 10rem;
+  margin-top: -10rem;
 }
 
 .homeScreen-card {
@@ -598,4 +597,7 @@ img.large {
   #section-b li {
     width: 31%;
   }
+}
+.featured-Products {
+  margin-bottom: 10rem;
 }

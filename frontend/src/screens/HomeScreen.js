@@ -77,7 +77,7 @@ const HomeScreen = () => {
         <img key={imgs} src={imgsArray[imgs]} alt="" className="feature-img" />
       </div>
 
-      <div>
+      <div className="featured-Products">
         <h1 className="homeScreen-h1">Featured Products</h1>
         {loading ? (
           <LoadingBox></LoadingBox>
@@ -93,9 +93,10 @@ const HomeScreen = () => {
           <MessageBox variant="danger">No products found</MessageBox>
         )}
       </div>
+
       <div>
         <div id="headSection">
-          <div id="rectangle"></div>
+          {/* <div id="rectangle"></div> */}
           <div className="homeSection">
             <div className="section__bg"></div>
           </div>
