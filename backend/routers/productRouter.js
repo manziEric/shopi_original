@@ -2,6 +2,7 @@ import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import data from "../data.js";
 import Product from "../models/productModel.js";
+import User from "../models/userModel.js";
 import { isAuth, isAdmin, isSellerOrAdmin } from "../utils.js";
 
 const productRouter = express.Router();
@@ -72,6 +73,7 @@ productRouter.get(
 productRouter.get(
   "/seed",
   expressAsyncHandler(async (req, res) => {
+    // await Product.remove({});
     const seller = await User.findOne({ isSeller: true });
     if (seller) {
       const products = data.products.map((product) => ({
