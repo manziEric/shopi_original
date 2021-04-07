@@ -67,7 +67,7 @@ function App() {
               <i className="fa fa-bars"></i>
             </button>
             <Link className="brand" to="/">
-              ShopiBase
+              Logo
             </Link>
           </div>
           <div>

@@ -1,11 +1,15 @@
 html {
   font-size: 62.5%;
   box-sizing: border-box;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   margin: 0;
-  height: 100vh;
+  padding: 0;
+  min-height: 100vh;
   font-size: 1.6;
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -13,7 +17,7 @@ body {
 }
 
 #root {
-  height: 100%;
+  min-height: 100%;
 }
 
 /* Layout */
@@ -25,7 +29,7 @@ body {
     "footer";
   grid-template-columns: 1fr;
   grid-template-rows: 5rem 1fr 5rem;
-  height: 100%;
+  min-height: 100vh;
 }
 header {
   grid-area: header;
@@ -622,17 +626,26 @@ img.large {
     height: 150rem;
   }
   .feature-img {
-    height: 35%;
+    height: 20%;
     position: absolute;
-    top: 60rem;
-    right: 60px;
+    top: 40rem;
+    right: 0;
     animation: zoomin 1.5s linear 1;
     animation-delay: 0.5s;
     visibility: hidden;
     animation-fill-mode: forwards;
   }
+  #showcase .content-wrap {
+    padding: 0;
+    margin-bottom: 2vh;
+    font-size: 2rem;
+  }
   #showcase {
     position: relative;
+  }
+  #showcase h1 {
+    padding-top: 10rem;
+    padding-bottom: 0;
   }
   .bg-image {
     position: absolute;
@@ -645,11 +658,43 @@ img.large {
     z-index: -1;
   }
   #section-b {
-    padding: 5em 17em 2em;
+    padding: 1em 5em 1em;
     margin-bottom: 5rem;
-    width: 50rem;
+    margin-top: 5rem;
+  }
+  .card-title {
+    font-weight: 900;
+    font-size: 1em;
   }
   #section-b li {
     margin-bottom: 2rem;
+  }
+  .search input {
+    border-radius: 0.5rem 0 0 0.5rem;
+    border-right: none;
+    margin-left: 0.5rem;
+    width: 4em;
+  }
+  header a {
+    color: #ffffff;
+    padding: 0;
+    margin-right: 0.5em;
+  }
+  a.brand {
+    color: #ffffff;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-right: 0;
+  }
+  main {
+    grid-area: main;
+    width: 100vw;
+  }
+  .content h1 {
+    font-size: 30px;
+    font-weight: 100;
+    margin-top: 24px;
+    margin-bottom: 15px;
+    color: #232d60;
   }
 }
