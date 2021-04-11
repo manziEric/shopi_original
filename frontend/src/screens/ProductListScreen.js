@@ -98,47 +98,49 @@ const ProductListScreen = (props) => {
         <MessageBox variant="danger">{error}</MessageBox>
       ) : Array.isArray(products) ? (
         <>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>NAME</th>
-                <th>PRICE</th>
-                <th>CATEGORY</th>
-                <th>BRAND</th>
-                <th>ACTIONS</th>
-              </tr>
-            </thead>
-            <tbody>
-              {products.map((product) => (
-                <tr key={product._id}>
-                  <td>{product._id}</td>
-                  <td>{product.name}</td>
-                  <td>{product.price}</td>
-                  <td>{product.category}</td>
-                  <td>{product.brand}</td>
-                  <td>
-                    <button
-                      type="button"
-                      className="small"
-                      onClick={() => {
-                        props.history.push(`/product/${product._id}/edit`);
-                      }}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      type="button"
-                      className="small"
-                      onClick={() => deleteHandler(product)}
-                    >
-                      Delete
-                    </button>
-                  </td>
+          <div className="table-div">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>ACTIONS</th>
+                  <th>NAME</th>
+                  <th>PRICE</th>
+                  <th>CATEGORY</th>
+                  <th>BRAND</th>
+                  <th>ID</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {products.map((product) => (
+                  <tr key={product._id}>
+                    <td>
+                      <button
+                        type="button"
+                        className="small"
+                        onClick={() => {
+                          props.history.push(`/product/${product._id}/edit`);
+                        }}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        type="button"
+                        className="small delete-button"
+                        onClick={() => deleteHandler(product)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                    <td>{product.name}</td>
+                    <td>{product.price}</td>
+                    <td>{product.category}</td>
+                    <td>{product.brand}</td>
+                    <td>{product._id}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
           <div className="pagination row center">
             {[...Array(pages).keys()].map((x) => (
               <Link

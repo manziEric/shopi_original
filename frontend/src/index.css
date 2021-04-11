@@ -334,7 +334,6 @@ img.large {
   max-width: 30rem;
 }
 
-/* TODO: fix search bar to be responsive  */
 /* Search  */
 .search button {
   border-radius: 0 0.5rem 0.5rem 0;
@@ -399,7 +398,7 @@ img.large {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url(./image/poster-1663612_1280.jpg);
+  background-image: url(./image/poster-1663612_1280.jpeg);
   background-position: center bottom;
   background-repeat: no-repeat;
   background-size: cover;
@@ -612,7 +611,7 @@ img.large {
   }
   .bg-image {
     position: absolute;
-    background: #333 url(./image/blue-sky-blur-clear-sky-color-281260.jpg);
+    background: #333 url(./image/blue-sky-blur-clear-sky-color-281260.jpeg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -621,14 +620,58 @@ img.large {
     z-index: -1;
   }
 }
-@media (max-width: 699px) {
-  .container-home {
-    height: 150rem;
+@media (max-width: 1150px) {
+  .search input {
+    border-radius: 0.5rem 0 0 0.5rem;
+    border-right: none;
+    margin-left: 0.5rem;
+    width: 30em;
+    height: 1.9rem;
   }
   .feature-img {
-    height: 20%;
+    height: 60%;
+    width: 100%;
+    position: absolute;
+    top: 50rem;
+    right: 0;
+    animation: zoomin 1.5s linear 1;
+    animation-delay: 0.5s;
+    visibility: hidden;
+    animation-fill-mode: forwards;
+  }
+  .container-home {
+    height: 120rem;
+  }
+}
+@media (max-width: 830px) {
+  .search input {
+    border-radius: 0.5rem 0 0 0.5rem;
+    border-right: none;
+    margin-left: 0.5rem;
+    width: 20em;
+    height: 1.9rem;
+  }
+  .feature-img {
+    height: 60%;
+    width: 100%;
     position: absolute;
     top: 40rem;
+    right: 0;
+    animation: zoomin 1.5s linear 1;
+    animation-delay: 0.5s;
+    visibility: hidden;
+    animation-fill-mode: forwards;
+  }
+}
+@media (max-width: 699px) {
+  .container-home {
+    height: 80rem;
+  }
+  .feature-img {
+    height: 50%;
+    width: 100%;
+    position: absolute;
+    top: 35rem;
     right: 0;
     animation: zoomin 1.5s linear 1;
     animation-delay: 0.5s;
@@ -649,7 +692,7 @@ img.large {
   }
   .bg-image {
     position: absolute;
-    background: #333 url(./image/blue-sky-blur-clear-sky-color-281260.jpg);
+    background: #333 url(./image/blue-sky-blur-clear-sky-color-281260.jpeg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -673,7 +716,8 @@ img.large {
     border-radius: 0.5rem 0 0 0.5rem;
     border-right: none;
     margin-left: 0.5rem;
-    width: 4em;
+    width: 15em;
+    height: 1.9rem;
   }
   header a {
     color: #ffffff;
@@ -696,5 +740,47 @@ img.large {
     margin-top: 24px;
     margin-bottom: 15px;
     color: #232d60;
+  }
+  .table-div {
+    overflow: auto;
+  }
+}
+
+@media (max-width: 525px) {
+  .search input {
+    border-radius: 0.5rem 0 0 0.5rem;
+    border-right: none;
+    margin-left: 0.5rem;
+    width: 5em;
+    height: 1.9rem;
+  }
+}
+
+@media (max-width: 364px) {
+  header {
+    grid-area: header;
+    background-color: #203040;
+    height: 6rem;
+    z-index: 1;
+  }
+  main {
+    grid-area: main;
+    width: 100vw;
+    margin-top: 1rem;
+  }
+  .div-dropdown {
+    margin-left: 11em;
+  }
+}
+@media (max-width: 268px) {
+  .search input {
+    border-radius: 0.5rem 0 0 0.5rem;
+    border-right: none;
+    margin-left: 0.5rem;
+    width: 2em;
+    height: 1.9rem;
+  }
+  .div-dropdown {
+    margin-left: 6em;
   }
 }

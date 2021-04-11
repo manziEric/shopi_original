@@ -17,9 +17,9 @@ import img6 from "../image/img6.png";
 import img7 from "../image/img7.png";
 import backArrow from "../image/back-arrow.png";
 import nextArrow from "../image/next-arrow.png";
-import image1 from "../image/augmented-reality-3468596_1280.jpg";
-import image2 from "../image/bee-2984342_1280.jpg";
-import image3 from "../image/tablet-1719191_1280.jpg";
+import image1 from "../image/augmented-reality-3468596_1280.jpeg";
+import image2 from "../image/bee-2984342_1280.jpeg";
+import image3 from "../image/tablet-1719191_1280.jpeg";
 
 //TODO: featured products need to get own pagination
 

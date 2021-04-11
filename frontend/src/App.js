@@ -74,7 +74,7 @@ function App() {
             {/* pass react-router-dom properties to the searchbox trouh render */}
             <Route render={({ history }) => <SearchBox history={history} />} />
           </div>
-          <div>
+          <div className="div-dropdown">
             <Link to="/cart">
               Cart
               {cartItems.length > 0 && (

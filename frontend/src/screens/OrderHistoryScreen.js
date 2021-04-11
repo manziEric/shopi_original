@@ -48,7 +48,7 @@ const OrderHistoryScreen = (props) => {
                   <button
                     type="button"
                     className="small"
-                    onClick={props.history.push(`/order/${order._id}`)}
+                    onClick={() => props.history.push(`/order/${order._id}`)}
                   >
                     Details
                   </button>
